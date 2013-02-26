@@ -28,7 +28,8 @@
 
 namespace asusdec {
 
-#define ASUSDEC_DEV "/dev/asusdec"
+  // intentionally asusEC (no d/dec) for tf101
+#define ASUSDEC_DEV "/dev/asusec"
 
 // copied from drivers/input/asusec/asusdec.h
 #define ASUSDEC_TP_ON   1
