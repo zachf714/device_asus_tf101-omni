@@ -26,8 +26,8 @@ PRODUCT_PACKAGES += \
 # Build asusdec
 PRODUCT_PACKAGES += \
     com.cyanogenmod.asusdec \
-    libasusdec_jni		
-		
+    libasusdec_jni
+
 # AGPS patch
 PRODUCT_COPY_FILES += \
     device/asus/tf101/prebuilt/etc/gps.conf:system/etc/gps.conf \
@@ -39,6 +39,10 @@ $(call inherit-product, device/asus/tf101/device.mk)
 
 # inherit
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
+# Enable xhdpi drawables while keeping mdpi as primary source
+PRODUCT_AAPT_CONFIG := normal mdpi hdpi xhdpi
+PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 # product
 PRODUCT_NAME := full_tf101
