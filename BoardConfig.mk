@@ -92,7 +92,6 @@ BOARD_HAS_SDCARD_INTERNAL := true
 BOARD_DATA_FILESYSTEM := ext4
 BOARD_SYSTEM_FILESYSTEM := ext4
 BOARD_CACHE_FILESYSTEM := ext4
-TARGET_RECOVERY_FSTAB := device/asus/tf101/ramdisk/fstab.ventana
 
 # release
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/tf101/releasetools/tf101_ota_from_target_files
