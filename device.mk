@@ -157,5 +157,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.opengles.version=131072 \
     dalvik.vm.dexopt-data-only=1 \
     persist.sys.usb.config=mtp,adb \
-    wifi.supplicant_scan_interval=180
+    wifi.supplicant_scan_interval=180 \
+    ro.opengles.version=196608
 
