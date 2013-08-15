@@ -146,8 +146,7 @@ PRODUCT_PACKAGES += \
     tinymix \
     tinyplay \
     tinyrec \
-    audio.primary.ventana \
-    AutoParts
+    audio.primary.ventana
 
 # override
 PRODUCT_PROPERTY_OVERRIDES := \
