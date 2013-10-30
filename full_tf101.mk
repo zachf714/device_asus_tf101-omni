@@ -30,9 +30,11 @@ PRODUCT_PACKAGES += \
 
 # AGPS patch
 PRODUCT_COPY_FILES += \
-    device/asus/tf101/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/asus/tf101/prebuilt/etc/SuplRootCert:system/etc/SuplRootCert \
     device/asus/tf101/prebuilt/etc/gps/gpsconfig.xml:system/etc/gps/gpsconfig.xml
+
+# The gps config appropriate for this device
+$(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 # device
 $(call inherit-product, device/asus/tf101/device.mk)
