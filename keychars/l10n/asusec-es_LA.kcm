@@ -1,10 +1,12 @@
 type FULL
 
 key GRAVE {
-    label, number:                      '`'
-    base:                               '`'
-    shift:                              '~'
-    alt, ctrl, meta:                    none
+    label, number:                      '|'
+    base:                               '|'
+    shift:                              '\u00b0'
+    alt:                                '\u00ac'
+    alt+shift:                          none
+    ctrl, meta:                         none
 }
 
 key 1 {
@@ -17,7 +19,7 @@ key 1 {
 key 2 {
     label, number:                      '2'
     base:                               '2'
-    shift:                              '@'
+    shift:                              '"'
     alt, ctrl, meta:                    none
 }
 
@@ -45,49 +47,51 @@ key 5 {
 key 6 {
     label, number:                      '6'
     base:                               '6'
-    shift:                              '^'
+    shift:                              '&'
     alt, ctrl, meta:                    none
 }
 
 key 7 {
     label, number:                      '7'
     base:                               '7'
-    shift:                              '&'
+    shift:                              '/'
     alt, ctrl, meta:                    none
 }
 
 key 8 {
     label, number:                      '8'
     base:                               '8'
-    shift:                              '*'
+    shift:                              '('
     alt, ctrl, meta:                    none
 }
 
 key 9 {
     label, number:                      '9'
     base:                               '9'
-    shift:                              '('
+    shift:                              ')'
     alt, ctrl, meta:                    none
 }
 
 key 0 {
     label, number:                      '0'
     base:                               '0'
-    shift:                              ')'
+    shift:                              '='
     alt, ctrl, meta:                    none
 }
 
 key MINUS {
-    label, number:                      '-'
-    base:                               '-'
-    shift:                              '_'
-    alt, ctrl, meta:                    none
+    label, number:                      '\''
+    base:                               '\''
+    shift:                              '?'
+    alt:                                '\\'
+    alt+shift:                          none
+    ctrl, meta:                         none
 }
 
 key EQUALS {
-    label, number:                      '='
-    base:                               '='
-    shift:                              '+'
+    label, number:                      '\u00bf'
+    base:                               '\u00bf'
+    shift:                              '\u00a1'
     alt, ctrl, meta:                    none
 }
 
@@ -102,8 +106,10 @@ key Q {
     number:                             '7'
     base:                               'q'
     shift, capslock:                    'Q'
+    alt:                                '@'
+    alt+shift:                          none
     capslock+shift:                     'q'
-    alt, ctrl, meta:                    none
+    ctrl, meta:                         none
 }
 
 key W {
@@ -188,17 +194,19 @@ key P {
 }
 
 key LEFT_BRACKET {
-    label, number:                      '['
-    base:                               '['
-    shift:                              '{'
+    label, number:                      '\u0301'
+    base:                               '\u0301'
+    shift:                              '\u0308'
     alt, ctrl, meta:                    none
 }
 
 key RIGHT_BRACKET {
-    label, number:                      ']'
-    base:                               ']'
-    shift:                              '}'
-    alt, ctrl, meta:                    none
+    label, number:                      '+'
+    base:                               '+'
+    shift:                              '*'
+    alt:                                '~'
+    alt+shift:                          none
+    ctrl, meta:                         none
 }
 
 key A {
@@ -283,24 +291,30 @@ key L {
 }
 
 key SEMICOLON {
-    label, number:                      ';'
-    base:                               ';'
-    shift:                              ':'
+    label:                              '\u00d1'
+    number:                             '\u00f1'
+    base:                               '\u00f1'
+    shift, capslock:                    '\u00d1'
+    capslock+shift:                     '\u00f1'
     alt, ctrl, meta:                    none
 }
 
 key APOSTROPHE {
-    label, number:                      '\''
-    base:                               '\''
-    shift:                              '"'
-    alt, ctrl, meta:                    none
+    label, number:                      '{'
+    base:                               '{'
+    shift:                              '['
+    alt:                                '\u0302'
+    alt+shift:                          none
+    ctrl, meta:                         none
 }
 
 key BACKSLASH {
-    label, number:                      '\\'
-    base:                               '\\'
-    shift:                              '|'
-    alt, ctrl, meta:                    none
+    label, number:                      '}'
+    base:                               '}'
+    shift:                              ']'
+    alt:                                '\u0300'
+    alt+shift:                          none
+    ctrl, meta:                         none
 }
 
 key ENTER {
@@ -309,7 +323,7 @@ key ENTER {
     alt, ctrl, meta:                    none
 }
 
-key CONTACTS {
+key EUROPE_2 {
     label, number:                      '<'
     base:                               '<'
     shift:                              '>'
@@ -382,21 +396,21 @@ key M {
 key COMMA {
     label, number:                      ','
     base:                               ','
-    shift:                              '<'
+    shift:                              ';'
     alt, ctrl, meta:                    none
 }
 
 key PERIOD {
     label, number:                      '.'
     base:                               '.'
-    shift:                              '>'
+    shift:                              ':'
     alt, ctrl, meta:                    none
 }
 
 key SLASH {
-    label, number:                      '/'
-    base:                               '/'
-    shift:                              '?'
+    label, number:                      '-'
+    base:                               '-'
+    shift:                              '_'
     alt, ctrl, meta:                    none
 }
 
