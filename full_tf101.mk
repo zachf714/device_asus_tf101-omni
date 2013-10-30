@@ -54,6 +54,4 @@ PRODUCT_MODEL := Transformer Pad
 ifneq ($(CM_BUILDTYPE),UNOFFICIAL)
     CM_BUILDTYPE := NO-NAME-ROM
     CM_VERSION := $(PRODUCT_VERSION_MAJOR)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)-$(CM_BUILD)$(CM_EXTRAVERSION)
-
 endif
-
