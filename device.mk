@@ -85,7 +85,8 @@ PRODUCT_COPY_FILES += \
 # media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/prebuilt/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
+    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    $(LOCAL_PATH)/audio/asound.conf:system/etc/asound.conf \
     $(LOCAL_PATH)/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
 
@@ -148,7 +149,8 @@ PRODUCT_PACKAGES += \
     tinyplay \
     tinyrec \
     audio_policy.tegra \
-    audio.primary.tegra
+    audio.primary.tegra \
+    librs_jni
 
 # override
 PRODUCT_PROPERTY_OVERRIDES := \
