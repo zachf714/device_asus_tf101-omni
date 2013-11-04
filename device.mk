@@ -115,17 +115,15 @@ PRODUCT_COPY_FILES += \
 
 # modules
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/lib/modules/apm-emulation.ko:system/lib/modules/apm-emulation.ko \
     $(LOCAL_PATH)/prebuilt/lib/modules/battery_rvsd.ko:system/lib/modules/battery_rvsd.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/cifs.ko:system/lib/modules/cifs.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/ff-memless.ko:system/lib/modules/ff-memless.ko \
+    $(LOCAL_PATH)/prebuilt/lib/modules/ipip.ko:system/lib/modules/ipip.ko \
     $(LOCAL_PATH)/prebuilt/lib/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/tun.ko:system/lib/modules/tun.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/xpad.ko:system/lib/modules/xpad.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/texfat.ko:system/lib/modules/texfat.ko
+    $(LOCAL_PATH)/prebuilt/lib/modules/isofs.ko:system/lib/modules/isofs.ko
 
 # init.d
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/init.d/05modules:system/etc/init.d/05modules
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/prebuilt/etc/init.d/05modules:system/etc/init.d/05modules
 
 # tablet
 PRODUCT_CHARACTERISTICS := tablet
