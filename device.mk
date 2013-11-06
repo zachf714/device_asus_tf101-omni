@@ -106,8 +106,8 @@ PRODUCT_COPY_FILES += \
 
 # bluetooth
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
-    $(LOCAL_PATH)/../../../system/bluetooth/data/main.nonsmartphone.conf:system/etc/bluetooth/main.conf
+    $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+ #   $(LOCAL_PATH)/../../../system/bluetooth/data/main.nonsmartphone.conf:system/etc/bluetooth/main.conf
 
 # camera
 PRODUCT_COPY_FILES += \
