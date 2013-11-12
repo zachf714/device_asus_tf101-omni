@@ -90,14 +90,27 @@ BOARD_USE_SKIA_LCDTEXT := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 
 # SELinux policies
-BOARD_SEPOLICY_DIRS := \
-    device/asus/tf101/selinux
+#BOARD_SEPOLICY_DIRS := \
+#    device/asus/tf101/selinux
 
-BOARD_SEPOLICY_UNION := \
-    file_contexts \
-    file.te \
-    device.te \
-    domain.te
+#BOARD_SEPOLICY_UNION := \
+#    file_contexts \
+#    file.te \
+#    device.te \
+#    domain.te
+
+# release
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/tf101/releasetools/tf101_ota_from_target_files
+
+# Tegra2 EGL support
+BOARD_USES_HGL := true
+BOARD_USES_OVERLAY := true
+BOARD_EGL_NEEDS_LEGACY_FB := true
+BOARD_EGL_CFG := device/asus/tf101/prebuilt/lib/hw/egl.cfg
+USE_OPENGL_RENDERER := true
+
+# recovery hack
+TARGET_RECOVERY_PRE_COMMAND := "echo 'boot-recovery' > /dev/block/mmcblk0p3; sync"
 
 # recovery
 RECOVERY_FSTAB_VERSION := 2
@@ -110,15 +123,22 @@ BOARD_DATA_FILESYSTEM := ext4
 BOARD_SYSTEM_FILESYSTEM := ext4
 BOARD_CACHE_FILESYSTEM := ext4
 
-# release
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/tf101/releasetools/tf101_ota_from_target_files
-
-# recovery hack
-TARGET_RECOVERY_PRE_COMMAND := "echo 'boot-recovery' > /dev/block/mmcblk0p3; sync"
-
-# Tegra2 EGL support
-BOARD_USES_HGL := true
-BOARD_USES_OVERLAY := true
-BOARD_EGL_NEEDS_LEGACY_FB := true
-BOARD_EGL_CFG := device/asus/tf101/prebuilt/lib/hw/egl.cfg
-USE_OPENGL_RENDERER := true
+#TWRP
+DEVICE_RESOLUTION := 1280x800
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_NO_USB_STORAGE := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_NO_REBOOT_RECOVERY := true
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sdcard"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sdcard"
+TW_INCLUDE_CRYPTO := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p8"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "journal_async_commit,data=writeback,nodelalloc"
+TW_CRYPTO_FS_FLAGS := "0x00000406"
+TW_CRYPTO_KEY_LOC := "footer"
+#TWRP_CUSTOM_KEYBOARD := ../../../device/asus/tf300t/recovery/hardwarekeyboard.cpp

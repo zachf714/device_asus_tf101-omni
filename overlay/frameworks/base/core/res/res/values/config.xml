@@ -185,7 +185,7 @@
     <!-- This device does not allow sms service. -->
     <bool name="config_sms_capable">false</bool>
 	
-	<bool name="config_hasRemovableLid">true</bool>
+	<!-- <bool name="config_hasRemovableLid">true</bool>-->
 
     <!-- Enable puk unlockscreen -->
     <bool name="config_enable_puk_unlock_screen">true</bool>
@@ -232,7 +232,7 @@
     <integer name="config_multiuserMaximumUsers">8</integer>
 
     <!-- Asus Dock Compatiblity should be enabled -->
-    <bool name="config_hasDockBattery">true</bool>
+   <!-- <bool name="config_hasDockBattery">true</bool> -->
 
     <add-resource type="string" name="config_deviceHandlersLib"></add-resource>
     <string name="config_deviceHandlersLib" translatable="false">/system/framework/com.cyanogenmod.asusdec.jar</string>

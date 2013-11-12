@@ -1,6 +1,6 @@
 # Inherit device configuration for tf101.
 $(call inherit-product, device/asus/tf101/full_tf101.mk)
-
+$(call inherit-product, vendor/omni/config/common.mk)
 #
 # Setup device specific product configuration.
 #
