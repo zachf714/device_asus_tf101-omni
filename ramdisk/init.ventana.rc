@@ -30,7 +30,7 @@ on init
 on fs
     setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
     setprop ro.crypto.umount_sd false
-    mount_all /fstab.ventana
+    mount_all /ventana.fstab
 
 # create virtual SD card at /mnt/sdcard, based on the /data/media directory
 # deamon will drop to user/group system/media_rw after initializing

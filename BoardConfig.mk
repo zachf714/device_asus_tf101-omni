@@ -114,7 +114,7 @@ TARGET_RECOVERY_PRE_COMMAND := "echo 'boot-recovery' > /dev/block/mmcblk0p3; syn
 
 # recovery
 RECOVERY_FSTAB_VERSION := 2
-TARGET_RECOVERY_FSTAB = device/asus/tf101/fstab.ventana
+TARGET_RECOVERY_FSTAB = device/asus/tf101/ventana.fstab
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true

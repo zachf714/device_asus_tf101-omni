@@ -62,7 +62,9 @@ PRODUCT_COPY_FILES += \
 
 # ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/fstab.ventana:root/fstab.ventana \
+    $(LOCAL_PATH)/ventana.fstab:root/ventana.fstab \
+	$(LOCAL_PATH)/recovery/twrp.fstab:recovery/root/etc/twrp.fstab \
+	$(LOCAL_PATH)/ventana.fstab:recovery/root/etc/ventana.fstab \
     $(LOCAL_PATH)/ramdisk/init.ventana.rc:root/init.ventana.rc \
     $(LOCAL_PATH)/ramdisk/init.ventana.keyboard.rc:root/init.ventana.keyboard.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.ventana.rc:root/ueventd.ventana.rc \
