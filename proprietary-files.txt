@@ -20,9 +20,6 @@ etc/wifi/wpa_supplicant.conf
 lib/egl/libEGL_tegra.so
 lib/egl/libGLESv1_CM_tegra.so
 lib/egl/libGLESv2_tegra.so
-lib/egl/libEGL_perfhud.so
-lib/egl/libGLESv1_CM_perfhud.so
-lib/egl/libGLESv2_perfhud.so
 lib/hw/camera.tegra.so
 lib/hw/gps.ventana.so
 lib/hw/gralloc.tegra.so

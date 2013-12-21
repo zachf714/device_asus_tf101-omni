@@ -184,8 +184,8 @@
 
     <!-- This device does not allow sms service. -->
     <bool name="config_sms_capable">false</bool>
-	
-	<!-- <bool name="config_hasRemovableLid">true</bool>-->
+   
+    <bool name="config_hasRemovableLid">true</bool>
 
     <!-- Enable puk unlockscreen -->
     <bool name="config_enable_puk_unlock_screen">true</bool>

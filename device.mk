@@ -130,6 +130,14 @@ PRODUCT_COPY_FILES += \
 # tablet
 PRODUCT_CHARACTERISTICS := tablet
 
+ adb has root
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.allow.mock.location=1 \
+    persist.sys.usb.config=mtp \
+    ro.adb.secure=0 \
+    ro.debuggable=1
+
 # type
 PRODUCT_TAGS += dalvik.gc.type-precise
 
