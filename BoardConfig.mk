@@ -68,6 +68,7 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcmdhd_apsta.bin
 # audio
 BOARD_USES_ALSA_AUDIO := false
 BOARD_USES_GENERIC_AUDIO := false
+BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 USE_PROPRIETARY_AUDIO_EXTENSIONS := true
 
 # battery
@@ -85,9 +86,16 @@ TARGET_KERNEL_CONFIG := katkernel_lidpatch_defconfig
 # camera
 USE_CAMERA_STUB := false
 
+# Needed for Some Vendors Proprietary blobs
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOL
+
+# Old EGL
+BOARD_EGL_NEEDS_FNW := true
+
 # display
 BOARD_USE_SKIA_LCDTEXT := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
 # SELinux policies
 #BOARD_SEPOLICY_DIRS := \

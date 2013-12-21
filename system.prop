@@ -22,3 +22,6 @@ sensor.loop.minms=0
 orientation.magnitude.threshold=50
 dalvik.vm.execution-mode=int:jit
 ro.sys.fw.bg_apps_limit = 20
+
+# don't preload OpenGL in Zygote, the Tegra drivers do not like it
+ro.zygote.disable_gl_preload=true

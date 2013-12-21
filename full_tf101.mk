@@ -33,6 +33,12 @@ PRODUCT_COPY_FILES += \
     device/asus/tf101/prebuilt/etc/SuplRootCert:system/etc/SuplRootCert \
     device/asus/tf101/prebuilt/etc/gps/gpsconfig.xml:system/etc/gps/gpsconfig.xml
 
+# wifi files
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    
+
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
@@ -53,7 +59,4 @@ PRODUCT_BRAND := asus
 PRODUCT_MANUFACTURER := Asus
 PRODUCT_MODEL := Transformer Pad
 
-ifneq ($(CM_BUILDTYPE),UNOFFICIAL)
-    CM_BUILDTYPE := NO-NAME-ROM
-    CM_VERSION := $(PRODUCT_VERSION_MAJOR)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)-$(CM_BUILD)$(CM_EXTRAVERSION)
-endif
+
