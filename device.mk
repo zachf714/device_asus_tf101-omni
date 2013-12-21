@@ -130,7 +130,7 @@ PRODUCT_COPY_FILES += \
 # tablet
 PRODUCT_CHARACTERISTICS := tablet
 
- adb has root
+#adb has root
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.allow.mock.location=1 \
