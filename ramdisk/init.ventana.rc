@@ -7,8 +7,31 @@ on init
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage 0550 system sdcard_r
     mkdir /storage/emulated 0555 root root
+
+#import init.ventana.keyboard.rc
+
+#on early-init
+
+
+on init
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
+
+    # External storage directories
+    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /mnt/media_rw/sdcard2 0700 media_rw media_rw
+    mkdir /mnt/media_rw/usbdisk0 0700 media_rw media_rw
+    mkdir /mnt/media_rw/usbdisk1 0700 media_rw media_rw
+    
+    mkdir /storage/sdcard0 0666 system system
+    mkdir /storage/sdcard1 0666 system system
+    mkdir /storage/sdcard2 0666 system system
+    mkdir /storage/usbdisk0 0666 system system
+    mkdir /storage/usbdisk1 0666 system system    
+    
     export EXTERNAL_STORAGE /storage/emulated/legacy
-    export SECONDARY_STORAGE /storage/sdcard1
+    export SECONDARY_STORAGE /storage/sdcard1:/storage/sdcard2:/storage/usbdisk0:/storage/usbdisk1
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
 
@@ -57,9 +80,12 @@ on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
 
+
 on boot
-     insmod /system/lib/modules/battery_rvsd.ko
-# bluetooth
+    mount debugfs debugfs /sys/kernel/debug
+    insmod /system/lib/modules/battery_rvsd.ko
+    
+    # bluetooth
     # UART device
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
@@ -74,10 +100,10 @@ on boot
     chown bluetooth bluetooth /system/etc/bluetooth
     setprop ro.bt.bdaddr_path "/system/etc/bluetooth/bdaddr"
 
-# backlight
+    # backlight
     chown system system /sys/class/backlight/pwm-backlight/brightness
 
-# Sensor
+    # Sensor
     chmod 666 /dev/nvhost-ctrl
     chmod 666 /dev/nvhost-display
     chmod 666 /dev/nvhost-dsi
@@ -89,10 +115,9 @@ on boot
     chmod 664 /sys/bus/iio/devices/device0/illuminance0_input
     chmod 664 /sys/bus/iio/devices/device0/proximity_raw
 
-
-# Power management settings
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 312000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1200000
+    # Power management settings
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 216000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1000000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 312000
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1200000
@@ -100,14 +125,38 @@ on boot
     write /sys/devices/system/cpu/cpufreq/interactive/go_maxspeed_load 80
     write /sys/module/cpuidle/parameters/lp2_in_idle 1
 
-# Touchscreen Config-UI interface
-   chmod 666 /sys/devices/platform/tegra-i2c.0/i2c-0/0-005a/debug_enable
-   chmod 666 /sys/devices/platform/tegra-i2c.0/i2c-0/0-005a/pause_driver
-   chmod 666 /sys/devices/platform/tegra-i2c.0/i2c-0/0-005a/slowscan_enable
+    # We dont want to swap keys unless needed
+    setprop sys.dockkeys.change 0
 
-# Default Read Ahead value for sdcards
+    # Touchscreen Config-UI interface
+    chmod 666 /sys/devices/platform/tegra-i2c.0/i2c-0/0-005a/debug_enable
+    chmod 666 /sys/devices/platform/tegra-i2c.0/i2c-0/0-005a/pause_driver
+    chmod 666 /sys/devices/platform/tegra-i2c.0/i2c-0/0-005a/slowscan_enable
+
+on fs
+    mount_all /fstab.ventana
+    setprop ro.crypto.fuse_sdcard true
+    setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
+
+on post-fs
+    # Default Read Ahead value for sdcards
     write /sys/block/mmcblk0/queue/read_ahead_kb 2048
     write /sys/block/mmcblk1/queue/read_ahead_kb 2048
+
+on post-fs-data
+    # we will remap this as /storage/sdcard0 with the sdcard fuse tool
+    mkdir /data/media 0770 media_rw media_rw
+    chown media_rw media_rw /data/media
+
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+
+    mkdir /data/misc/wminput 0776 system system
+
+    # Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
 
 # Wiimote connect status
     write /data/misc/wminput/connected 0
@@ -274,6 +323,41 @@ service tf_daemon /system/bin/tf_daemon -storageDir /data/tf -d
 on property:tf.enable=y
     mkdir /data/tf
     start tf_daemon
+
+# virtual sdcard daemon running as media_rw (1023)
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+    class late_start
+    oneshot
+
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
+    class late_start
+    disabled
+
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_sdcard2 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard2 /storage/sdcard2
+    class late_start
+    disabled
+    
+service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk0 /storage/usbdisk0
+    class late_start
+    disabled
+
+service fuse_usbdisk1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk1 /storage/usbdisk1
+    class late_start
+    disabled
+    
+on property:ro.fuse_sdcard=true
+    start sdcard
+
+# This will make sure that sdcard service starts as late_start.
+on nonencrypted
+    setprop ro.fuse_sdcard ${persist.fuse_sdcard}
+
+on property:vold.decrypt=trigger_restart_framework
+    setprop ro.fuse_sdcard ${persist.fuse_sdcard}
 
 service BtService /system/bin/sh /system/etc/BtService.sh
      user root
