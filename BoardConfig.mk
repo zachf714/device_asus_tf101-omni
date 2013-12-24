@@ -81,7 +81,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/tf101/bluetooth
 
 # kernel - disable inline building for now  
 TARGET_KERNEL_SOURCE := kernel/asus/tf101
-TARGET_KERNEL_CONFIG := katkernel_lidpatch_defconfig
+TARGET_KERNEL_CONFIG := sid_selinux_defconfig
 
 # camera
 USE_CAMERA_STUB := false
